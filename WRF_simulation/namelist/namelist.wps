@@ -1,0 +1,55 @@
+&share
+ wrf_core = 'ARW',
+ max_dom = 2
+ start_date = '2016-03-31_00:00:00','2016-03-31_00:00:00','2016-03-31_00:00:00',
+ end_date   = '2016-04-03_00:00:00','2016-04-03_00:00:00','2016-04-03_00:00:00',
+ interval_seconds = 10800
+ io_form_geogrid = 2,
+/
+
+&geogrid
+ parent_id            = 1, 1
+ parent_grid_ratio    = 1, 3
+ i_parent_start       = 1, 54
+ j_parent_start       = 1, 25
+ e_we                 = 107, 142
+ e_sn                 = 123, 76
+
+
+ !
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPORTANT NOTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ ! The default datasets used to produce the MAXSNOALB and ALBEDO12M
+ ! fields have changed in WPS v4.0. These fields are now interpolated
+ ! from MODIS-based datasets.
+ !
+ ! To match the output given by the default namelist.wps in WPS v3.9.1,
+ ! the following setting for geog_data_res may be used:
+ !
+ ! geog_data_res = 'maxsnowalb_ncep+albedo_ncep+default', 'maxsnowalb_ncep+albedo_ncep+default',
+ !
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPORTANT NOTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !
+ geog_data_res = 'default+lowres', 'default+lowres',
+ !geog_data_res = 'modis_30s_lake','modis_30s_lake',
+ dx = 9000,
+ dy = 9000,
+ map_proj = 'lambert',
+ ref_lat   =  25.00,
+ ref_lon   =  102.00,
+ truelat1  =  25.0,
+ truelat2  =  25.0,
+ stand_lon =  102.0,
+ geog_data_path = '/mnt/rmao/yinx/WPS_GEOG/'
+ !geog_data_path = '../WPS_GEOG/WPS_GEOG_LOW_RES/'
+/
+
+&ungrib
+ out_format = 'WPS',
+ prefix = 'FILE_SFC',
+ pmin = 0,
+/
+
+&metgrid
+ fg_name = 'FILE_PRESS','FILE_SFC'
+ io_form_metgrid = 2,
+/

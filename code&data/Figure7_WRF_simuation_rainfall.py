@@ -8,8 +8,8 @@ from numpy import nan_to_num
 import matplotlib.ticker as mticker
 
 # 文件路径设置
-file_path_9 = 'E:/WRF/WRFrun926/geo_origin/wrfout_d02_2016-04-02_11_00_00'
-file_path_10 = 'E:/WRF/WRFrun926/geo_origin/wrfout_d02_2016-04-02_17_00_00'
+file_path_9 = 'E:/WRF/WRFrun926/geo_origin/wrfout_d02_2016-04-02_12_00_00'
+file_path_10 = 'E:/WRF/WRFrun926/geo_origin/wrfout_d02_2016-04-02_18_00_00'
 shapefile_path = 'E:/WRF/ynst.shp'
 
 # 打开 NetCDF 文件
@@ -19,17 +19,15 @@ print("Calculating...")
 
 # 获取降水变量
 rainc_9 = ncfile_9.variables['RAINC'][:]
-rainsh_9 = ncfile_9.variables['RAINSH'][:]
 rainnc_9 = ncfile_9.variables['RAINNC'][:]
 
 rainc_10 = ncfile_10.variables['RAINC'][:]
-rainsh_10 = ncfile_10.variables['RAINSH'][:]
 rainnc_10 = ncfile_10.variables['RAINNC'][:]
 
-# 计算总降水量。Rainc为对流性降水，rainsh为浅对流性降水，rainnc为非对流性降水。
+# 计算总降水量。Rainc为对流性降水，rainnc为非对流性降水。
 #只画对流性就把后两者去掉
-total_precip_9 = rainc_9 + rainsh_9 + rainnc_9
-total_precip_10 = rainc_10 + rainsh_10 + rainnc_10
+total_precip_9 = rainc_9 + rainnc_9
+total_precip_10 = rainc_10 + rainnc_10
 
 # 计算两个时间步之间的降水量差（单位：mm）
 precip_diff = total_precip_10[0, :, :] - total_precip_9[0, :, :]

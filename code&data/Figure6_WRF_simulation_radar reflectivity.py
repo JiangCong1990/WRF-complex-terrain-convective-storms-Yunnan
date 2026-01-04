@@ -8,7 +8,7 @@ from matplotlib.colors import ListedColormap, BoundaryNorm
 import matplotlib.ticker as mticker
 
 # 读取NetCDF数据
-file_path = "E:/WRF/WRFrun926/geo_2000/wrfout_d02_2016-04-02_20_00_00"
+file_path = "E:/WRF/WRFrun926/geo_2000/wrfout_d02_2016-04-02_12_00_00"
 dataset = nc.Dataset(file_path)
 shapefile_path = 'E:/WRF/ynst.shp'
 
